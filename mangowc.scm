@@ -1,5 +1,4 @@
 (define-module (mangowc)
-  #:use-module (guix download)
   #:use-module (guix git-download)
   #:use-module (guix gexp)
   #:use-module (guix packages)
@@ -11,8 +10,6 @@
   #:use-module (gnu packages admin)
   #:use-module (gnu packages pcre)
   #:use-module (gnu packages xorg)
-  #:use-module (gnu packages build-tools)
-  #:use-module (gnu packages ninja)
   #:use-module (gnu packages pkg-config)
   #:use-module (guix build-system meson)
   #:use-module (guix licenses))
@@ -42,7 +39,6 @@
                 (("sysconfdir = sysconfdir.substring\\(prefix.length\\(\\)\\)")
                  "")))))))
     (inputs (list wayland
-                  wayland-protocols
                   libinput
                   libdrm
                   libxkbcommon
@@ -56,7 +52,7 @@
                   xcb-util-wm
                   wlroots
                   scenefx))
-    (native-inputs (list meson ninja pkg-config))
+    (native-inputs (list pkg-config wayland-protocols))
     (home-page "https://github.com/DreamMaoMao/mangowc")
     (synopsis "Wayland compositor based on wlroots and scenefx")
     (description "A Wayland compositor based on wlroots and scenefx,
